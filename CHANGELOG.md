@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.0] - 2024-09-06
+## [1.0.1] - 2024-09-06
 
 ### Added
 - Initial release of the `MaterialPagination` package.

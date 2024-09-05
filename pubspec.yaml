@@ -1,6 +1,6 @@
 name: material_pagination
-description: "MaterialPagination is a customizable and flexible pagination widget for Flutter applications. It allows you to easily create pagination controls with numbered page buttons, next/previous arrows, and extensive customization options."
-version: 1.0.0
+description: "MaterialPagination is a versatile Flutter widget for pagination, offering customizable page buttons and navigation arrows, perfect for enhancing user navigation."
+version: 1.0.1
 homepage:  https://github.com/shyamexe/material_pagination?tab=readme-ov-file#readme
 repository: https://github.com/shyamexe/material_pagination 
 topics: [material, pagination,page]
