@@ -1,8 +1,8 @@
  
 # Material Pagination
 
-<!-- [![Pub Version](https://img.shields.io/pub/v/material_pagination.svg)](https://pub.dev/packages/material_pagination)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/your_username/material_pagination/main.yml)](https://github.com/your_username/material_pagination/actions) -->
+[![Pub Version](https://img.shields.io/pub/v/material_pagination.svg)](https://pub.dev/packages/material_pagination)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/your_username/material_pagination/main.yml)](https://github.com/your_username/material_pagination/actions)
 
 
 MaterialPagination is a customizable and flexible pagination widget for Flutter applications. It allows you to easily create pagination controls with numbered page buttons, next/previous arrows, and extensive customization options.
@@ -13,17 +13,17 @@ MaterialPagination is a customizable and flexible pagination widget for Flutter 
 <div align="center"> 
 <table>
   <td>
-   <img src="screenshots/1.png">
+   <img src="https://raw.githubusercontent.com/shyamexe/material_pagination/master/screenshots/1.png">
   </td> 
   <td>
-   <img src="screenshots/image.png">
+   <img src="https://raw.githubusercontent.com/shyamexe/material_pagination/master/screenshots/image.png">
   </td>
   <td>
-   <img src="screenshots/3.png">
+   <img src="https://raw.githubusercontent.com/shyamexe/material_pagination/master/screenshots/3.png">
   </td>
   
   
-</table>
+</table>                                                                           
 </div>
 
 
