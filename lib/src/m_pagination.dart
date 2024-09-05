@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 /// [MaterialPagination] is a custom pagination widget that provides a flexible
 /// and customizable way to navigate through pages.
 ///
@@ -29,7 +28,7 @@ import 'package:flutter/material.dart';
 /// ```
 ///
 /// ## Parameters:
-/// 
+///
 /// * [currentPage] - The current active page in the pagination sequence.
 /// * [totalPages] - The total number of pages available for navigation.
 /// * [onPageChanged] - A callback function that gets called when the user taps
@@ -51,11 +50,11 @@ import 'package:flutter/material.dart';
 /// Default is 8.0.
 /// * [colorDarkness] - A value between 0 and 1, used to darken the active color
 /// for the current page button border. Default is 0.3.
-/// 
+///
 /// ## Example:
 /// This example shows how to create a basic pagination bar with 10 total pages,
 /// and a callback to handle page changes:
-/// 
+///
 /// ```dart
 /// MaterialPagination(
 ///   currentPage: 3,
@@ -73,7 +72,7 @@ import 'package:flutter/material.dart';
 ///   borderRadius: 10.0,
 /// )
 /// ```
-/// 
+///
 /// ## Features:
 /// * Provides easy navigation through numbered pages.
 /// * Customizable button and icon sizes, colors, and styles.
@@ -94,34 +93,34 @@ class MaterialPagination extends StatelessWidget {
   /// It passes the selected page index.
   final Function(int page) onPageChanged;
 
-  /// The number of page buttons visible at once. 
+  /// The number of page buttons visible at once.
   /// Defaults to 5.
   final int visiblePageCount;
 
-  /// The color of the active page button. 
+  /// The color of the active page button.
   /// Defaults to [Colors.blue].
   final Color? activeColor;
 
-  /// The color of inactive page buttons. 
+  /// The color of inactive page buttons.
   /// Defaults to [Colors.grey].
   final Color? inactiveColor;
 
   /// Customizable text style for the page numbers.
   final TextStyle? fontStyle;
 
-  /// The size of the page buttons. 
+  /// The size of the page buttons.
   /// Defaults to 32.0.
   final double buttonSize;
 
-  /// The size of the icons (e.g., for next/previous arrows). 
+  /// The size of the icons (e.g., for next/previous arrows).
   /// Defaults to 12.0.
   final double iconSize;
 
-  /// The gap between the pagination icons and the buttons. 
+  /// The gap between the pagination icons and the buttons.
   /// Defaults to 4.0.
   final double iconGap;
 
-  /// The border radius for the page buttons. 
+  /// The border radius for the page buttons.
   /// Defaults to 8.0.
   final double borderRadius;
 
@@ -138,20 +137,23 @@ class MaterialPagination extends StatelessWidget {
     this.fontStyle,
     this.activeColor = Colors.blue,
     this.inactiveColor = Colors.grey,
-    this.buttonSize = 32.0, 
-    this.iconGap = 4.0,  
-    this.borderRadius = 8.0,  
-    this.colorDarkness = 0.3, 
+    this.buttonSize = 32.0,
+    this.iconGap = 4.0,
+    this.borderRadius = 8.0,
+    this.colorDarkness = 0.3,
     this.iconSize = 12.0,
   });
 
-    /// Helper method to calculate the visible range of page numbers to display.
+  /// Helper method to calculate the visible range of page numbers to display.
   /// It ensures the range is adjusted correctly based on the current page, total pages,
   /// and the number of visible pages.
   List<int> _calculatePageRange() {
-    int halfVisible = (visiblePageCount / 2).floor(); // Calculate half of visible pages
-    int startPage = (currentPage - halfVisible).clamp(1, totalPages); // Calculate start page
-    int endPage = (currentPage + halfVisible).clamp(1, totalPages); // Calculate end page
+    int halfVisible =
+        (visiblePageCount / 2).floor(); // Calculate half of visible pages
+    int startPage = (currentPage - halfVisible)
+        .clamp(1, totalPages); // Calculate start page
+    int endPage =
+        (currentPage + halfVisible).clamp(1, totalPages); // Calculate end page
 
     // Adjust start or end page if they exceed the range
     if (startPage == 1) {
@@ -160,10 +162,12 @@ class MaterialPagination extends StatelessWidget {
       startPage = (totalPages - visiblePageCount + 1).clamp(1, totalPages);
     }
 
-    return [startPage, endPage]; // Return the range as a list of start and end pages
+    return [
+      startPage,
+      endPage
+    ]; // Return the range as a list of start and end pages
   }
 
-  
   /// Helper method to build a button for individual page numbers.
   /// [pageIndex] is the page number displayed on the button, [isCurrentPage] indicates whether it's the active page.
   Widget _buildPageButton(int pageIndex, bool isCurrentPage) {
@@ -172,28 +176,36 @@ class MaterialPagination extends StatelessWidget {
       width: buttonSize,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: isCurrentPage ? activeColor?.withOpacity(0.2) : inactiveColor?.withOpacity(0.01),
+          color: isCurrentPage
+              ? activeColor?.withOpacity(0.2)
+              : inactiveColor?.withOpacity(0.01),
           borderRadius: BorderRadius.circular(borderRadius),
           border: Border.all(
-            color: isCurrentPage ?  activeColor?.darken() ?? inactiveColor! : inactiveColor!.withOpacity(0.23),
+            color: isCurrentPage
+                ? activeColor?.darken() ?? inactiveColor!
+                : inactiveColor!.withOpacity(0.23),
           ),
         ),
         child: TextButton(
-         
           style: TextButton.styleFrom(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(borderRadius)),
             padding: EdgeInsets.zero,
-            textStyle:   fontStyle?.copyWith( 
-              color: isCurrentPage ? activeColor : inactiveColor?.withOpacity(0.5),
+            textStyle: fontStyle?.copyWith(
+              color:
+                  isCurrentPage ? activeColor : inactiveColor?.withOpacity(0.5),
             ),
             backgroundColor: Colors.transparent,
-            foregroundColor: isCurrentPage ? activeColor?.darken() : inactiveColor?.withOpacity(0.5),
-            disabledForegroundColor: isCurrentPage ?  activeColor?.darken() : inactiveColor?.withOpacity(0.5),
+            foregroundColor: isCurrentPage
+                ? activeColor?.darken()
+                : inactiveColor?.withOpacity(0.5),
+            disabledForegroundColor: isCurrentPage
+                ? activeColor?.darken()
+                : inactiveColor?.withOpacity(0.5),
           ),
           onPressed: isCurrentPage ? null : () => onPageChanged(pageIndex),
           child: Text(
             pageIndex.toString(),
-           
           ),
         ),
       ),
@@ -216,10 +228,11 @@ class MaterialPagination extends StatelessWidget {
         ),
         child: IconButton(
           style: IconButton.styleFrom(
-             padding: EdgeInsets.zero,
+            padding: EdgeInsets.zero,
             backgroundColor: Colors.transparent,
-            foregroundColor : inactiveColor?.withOpacity(0.5),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius)),
+            foregroundColor: inactiveColor?.withOpacity(0.5),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(borderRadius)),
           ),
           padding: EdgeInsets.zero,
           onPressed: isNext
@@ -251,10 +264,12 @@ class MaterialPagination extends StatelessWidget {
             _buildIconButton(Icons.arrow_back_ios_new_rounded, false),
             SizedBox(width: iconGap),
           ],
-          if (startPage > (visiblePageCount /2)+1) ...[
+          if (startPage > (visiblePageCount / 2) + 1) ...[
             _buildPageButton(1, false),
             SizedBox(width: iconGap),
-            Text('...', style: fontStyle?.copyWith(color: inactiveColor?.withOpacity(0.5))),
+            Text('...',
+                style: fontStyle?.copyWith(
+                    color: inactiveColor?.withOpacity(0.5))),
             SizedBox(width: iconGap),
           ],
           ...List.generate(endPage - startPage + 1, (index) {
@@ -268,7 +283,9 @@ class MaterialPagination extends StatelessWidget {
           }),
           if (endPage < totalPages) ...[
             SizedBox(width: iconGap),
-            Text('...', style: fontStyle?.copyWith(color: inactiveColor?.withOpacity(0.5))),
+            Text('...',
+                style: fontStyle?.copyWith(
+                    color: inactiveColor?.withOpacity(0.5))),
             SizedBox(width: iconGap),
             _buildPageButton(totalPages, false),
           ],
