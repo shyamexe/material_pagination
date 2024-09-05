@@ -10,6 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  plugin_platform_interface: ^2.0.2
 
 dev_dependencies:
   flutter_test:
@@ -21,27 +24,27 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-  # plugin:
-  #   platforms:
-  #     android:
-  #       package: exe.shyam.material_pagination
-  #       pluginClass: MaterialPaginationPlugin
-  #     ios:
-  #       pluginClass: MaterialPaginationPlugin
-  #     web:
-  #       pluginClass: MaterialPaginationWeb
-  #       fileName: material_pagination_web.dart
-  #     linux:
-  #       pluginClass: MaterialPaginationPlugin
-  #     macos:
-  #       pluginClass: MaterialPaginationPlugin
-  #     windows:
-  #       pluginClass: MaterialPaginationPlugin
+  plugin:
+    platforms:
+      android:
+        package: exe.shyam.material_pagination
+        pluginClass: MaterialPaginationPlugin
+      ios:
+        pluginClass: MaterialPaginationPlugin
+      web:
+        pluginClass: MaterialPaginationWeb
+        fileName: material_pagination_web.dart
+      linux:
+        pluginClass: MaterialPaginationPlugin
+      macos:
+        pluginClass: MaterialPaginationPlugin
+      windows:
+        pluginClass: MaterialPaginationPlugin
 
   # To add assets to your package, add an assets section, like this:
-  assets:
+  # assets:
     
-     - example/
+  #    - example/
   #
   # For details regarding assets in packages, see
   # https://flutter.dev/assets-and-images/#from-packages
