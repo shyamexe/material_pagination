@@ -1,7 +1,7 @@
 name: material_pagination
 description: "A new Flutter package project."
 version: 0.0.1
-homepage:
+homepage:  https://github.com/shyamexe/material_pagination
 
 environment:
   sdk: '>=3.4.3 <4.0.0'
@@ -21,11 +21,27 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  # plugin:
+  #   platforms:
+  #     android:
+  #       package: exe.shyam.material_pagination
+  #       pluginClass: MaterialPaginationPlugin
+  #     ios:
+  #       pluginClass: MaterialPaginationPlugin
+  #     web:
+  #       pluginClass: MaterialPaginationWeb
+  #       fileName: material_pagination_web.dart
+  #     linux:
+  #       pluginClass: MaterialPaginationPlugin
+  #     macos:
+  #       pluginClass: MaterialPaginationPlugin
+  #     windows:
+  #       pluginClass: MaterialPaginationPlugin
 
   # To add assets to your package, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    
+     - example/
   #
   # For details regarding assets in packages, see
   # https://flutter.dev/assets-and-images/#from-packages
