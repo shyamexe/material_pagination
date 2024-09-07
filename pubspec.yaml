@@ -4,6 +4,7 @@ version: 1.0.1
 homepage:  https://github.com/shyamexe/material_pagination?tab=readme-ov-file#readme
 repository: https://github.com/shyamexe/material_pagination 
 topics: [material, pagination,page]
+documentation: https://pub.dev/documentation/material_pagination/latest/
 
 environment:
   sdk: '>=3.4.3 <4.0.0'
