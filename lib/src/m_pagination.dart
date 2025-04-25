@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_pagination/src/utils.dart';
 
 /// [MaterialPagination] is a custom pagination widget that provides a flexible
 /// and customizable way to navigate through pages.
@@ -8,7 +9,7 @@ import 'package:flutter/material.dart';
 /// behavior of the pagination controls.
 ///
 /// Example usage:
-/// ```dart
+/// 
 /// MaterialPagination(
 ///   currentPage: 1,
 ///   totalPages: 10,
@@ -25,7 +26,7 @@ import 'package:flutter/material.dart';
 ///   borderRadius: 8.0,
 ///   colorDarkness: 0.2,
 /// )
-/// ```
+/// 
 ///
 /// ## Parameters:
 ///
@@ -55,7 +56,7 @@ import 'package:flutter/material.dart';
 /// This example shows how to create a basic pagination bar with 10 total pages,
 /// and a callback to handle page changes:
 ///
-/// ```dart
+/// 
 /// MaterialPagination(
 ///   currentPage: 3,
 ///   totalPages: 10,
@@ -71,7 +72,7 @@ import 'package:flutter/material.dart';
 ///   buttonSize: 36.0,
 ///   borderRadius: 10.0,
 /// )
-/// ```
+/// 
 ///
 /// ## Features:
 /// * Provides easy navigation through numbered pages.
@@ -101,6 +102,7 @@ class MaterialPagination extends StatelessWidget {
   /// Defaults to [Colors.blue].
   final Color? activeColor;
 
+
   /// The color of inactive page buttons.
   /// Defaults to [Colors.grey].
   final Color? inactiveColor;
@@ -128,6 +130,19 @@ class MaterialPagination extends StatelessWidget {
   /// Defaults to 0.3.
   final double colorDarkness;
 
+  /// The type of pagination button style to be used.
+  /// Determines the visual appearance of the pagination buttons.
+  /// Defaults to [MPageType.filled].
+  final MPageType type;
+
+  /// The color of the text for active buttons.
+  /// Defaults to null.
+  final Color? activeTextColor;
+
+  /// The color of the text for inactive buttons.
+  /// Defaults to null.
+  final Color? inactiveTextColor;
+
   const MaterialPagination({
     super.key,
     required this.currentPage,
@@ -142,6 +157,9 @@ class MaterialPagination extends StatelessWidget {
     this.borderRadius = 8.0,
     this.colorDarkness = 0.3,
     this.iconSize = 12.0,
+    this.type = MPageType.filled,
+    this.activeTextColor,
+    this.inactiveTextColor,
   });
 
   /// Helper method to calculate the visible range of page numbers to display.
@@ -175,32 +193,47 @@ class MaterialPagination extends StatelessWidget {
       height: buttonSize,
       width: buttonSize,
       child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: isCurrentPage
-
-              ? activeColor?.withAlpha(51)              
-              : inactiveColor?.withAlpha(3),          borderRadius: BorderRadius.circular(borderRadius),
-          border: Border.all(
-            color: isCurrentPage
-                ? activeColor?.darken() ?? inactiveColor!
-                : inactiveColor!.withAlpha(59),
-          ),
+       decoration: BoxDecoration(
+          color: type == MPageType.filled
+              ? (isCurrentPage
+                  ? activeColor
+                  : inactiveColor?.withAlpha(50))
+              : (isCurrentPage
+                  ? activeColor?.withAlpha(51)
+                  : inactiveColor?.withAlpha(3)),
+          borderRadius: BorderRadius.circular(borderRadius),
+          border: type == MPageType.outlined
+              ? Border.all(
+                  color: isCurrentPage
+                      ? activeColor?.darken() ?? inactiveColor!
+                      : inactiveColor!.withAlpha(59),
+                )
+              : null,
         ),
         child: TextButton(
-          style: TextButton.styleFrom(
+         style: TextButton.styleFrom(
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(borderRadius)),
+              borderRadius: BorderRadius.circular(borderRadius),
+            ),
             padding: EdgeInsets.zero,
             textStyle: fontStyle?.copyWith(
-              color:
-                  isCurrentPage ? activeColor : inactiveColor?..withAlpha(128),    
+              color: type == MPageType.filled && isCurrentPage
+                  ? activeTextColor ?? Colors.white
+                  : isCurrentPage
+                      ? activeTextColor ?? activeColor
+                      : inactiveTextColor ?? inactiveColor?.withAlpha(128),
             ),
             backgroundColor: Colors.transparent,
             foregroundColor: isCurrentPage
-                ? activeColor?.darken()
-                : inactiveColor?.withAlpha(128),            disabledForegroundColor: isCurrentPage
-                ? activeColor?.darken()
-                : inactiveColor?..withAlpha(128),    
+                ? (type == MPageType.filled
+                    ? activeTextColor ?? Colors.white
+                    : activeTextColor ?? activeColor?.darken())
+                : inactiveTextColor ?? inactiveColor?.withAlpha(128),
+            disabledForegroundColor: isCurrentPage
+                ? (type == MPageType.filled
+                    ? activeTextColor ?? Colors.white
+                    : activeTextColor ?? activeColor?.darken())
+                : inactiveTextColor ?? inactiveColor?.withAlpha(128),
           ),
           onPressed: isCurrentPage ? null : () => onPageChanged(pageIndex),
           child: Text(
@@ -218,29 +251,33 @@ class MaterialPagination extends StatelessWidget {
       height: buttonSize,
       width: buttonSize,
       child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: Colors.transparent,
+       decoration: BoxDecoration(
+          color: type == MPageType.filled
+              ? inactiveColor?.withAlpha(50)
+              : Colors.transparent,
           borderRadius: BorderRadius.circular(borderRadius),
-          border: Border.all(
-            color: inactiveColor!.withAlpha(59)
-          ),
+          border: type == MPageType.outlined
+              ? Border.all(color: inactiveColor!.withAlpha(59))
+              : null,
         ),
         child: IconButton(
-          style: IconButton.styleFrom(
+         style: IconButton.styleFrom(
             padding: EdgeInsets.zero,
             backgroundColor: Colors.transparent,
-            foregroundColor: inactiveColor?.withAlpha(128),    
+            foregroundColor: inactiveTextColor ?? inactiveColor?.withAlpha(128),
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(borderRadius)),
+              borderRadius: BorderRadius.circular(borderRadius),
+            ),
           ),
           padding: EdgeInsets.zero,
           onPressed: isNext
               ? () => onPageChanged(currentPage + 1)
               : () => onPageChanged(currentPage - 1),
-          icon: Icon(
+          icon:
+             Icon(
             icon,
             size: iconSize,
-            color: inactiveColor?.withAlpha(128)
+            color: inactiveTextColor ?? inactiveColor?.withAlpha(128),
           ),
         ),
       ),
@@ -267,8 +304,8 @@ class MaterialPagination extends StatelessWidget {
             _buildPageButton(1, false),
             SizedBox(width: iconGap),
             Text('...',
-                style: fontStyle?.copyWith(
-                    color: inactiveColor?.withAlpha(128))),
+                style:
+                    fontStyle?.copyWith(color: inactiveTextColor ?? inactiveColor?.withAlpha(128))),
             SizedBox(width: iconGap),
           ],
           ...List.generate(endPage - startPage + 1, (index) {
@@ -283,8 +320,8 @@ class MaterialPagination extends StatelessWidget {
           if (endPage < totalPages) ...[
             SizedBox(width: iconGap),
             Text('...',
-                style: fontStyle?.copyWith(
-                    color: inactiveColor?.withAlpha(128))),
+                style:
+                    fontStyle?.copyWith(color: inactiveTextColor ?? inactiveColor?.withAlpha(128))),
             SizedBox(width: iconGap),
             _buildPageButton(totalPages, false),
           ],
@@ -295,22 +332,5 @@ class MaterialPagination extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-/// Extension to darken a color by a given amount (0 to 1).
-extension ColorExtensions on Color {
-  Color darken([double amount = 0.1]) {
-    // Ensure amount is within valid range
-    assert(amount >= 0 && amount <= 1, 'Amount should be between 0 and 1');
-
-    // Convert color to HSV, which makes it easier to adjust brightness
-    final hsvColor = HSVColor.fromColor(this);
-
-    // Calculate new value (brightness) of the color
-    final newValue = (hsvColor.value - amount).clamp(0.0, 1.0);
-
-    // Return new color with adjusted brightness
-    return hsvColor.withValue(newValue).toColor();
   }
 }
