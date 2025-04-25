@@ -177,13 +177,13 @@ class MaterialPagination extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: isCurrentPage
-              ? activeColor?.withOpacity(0.2)
-              : inactiveColor?.withOpacity(0.01),
-          borderRadius: BorderRadius.circular(borderRadius),
+
+              ? activeColor?.withAlpha(51)              
+              : inactiveColor?.withAlpha(3),          borderRadius: BorderRadius.circular(borderRadius),
           border: Border.all(
             color: isCurrentPage
                 ? activeColor?.darken() ?? inactiveColor!
-                : inactiveColor!.withOpacity(0.23),
+                : inactiveColor!.withAlpha(59),
           ),
         ),
         child: TextButton(
@@ -193,15 +193,14 @@ class MaterialPagination extends StatelessWidget {
             padding: EdgeInsets.zero,
             textStyle: fontStyle?.copyWith(
               color:
-                  isCurrentPage ? activeColor : inactiveColor?.withOpacity(0.5),
+                  isCurrentPage ? activeColor : inactiveColor?..withAlpha(128),    
             ),
             backgroundColor: Colors.transparent,
             foregroundColor: isCurrentPage
                 ? activeColor?.darken()
-                : inactiveColor?.withOpacity(0.5),
-            disabledForegroundColor: isCurrentPage
+                : inactiveColor?.withAlpha(128),            disabledForegroundColor: isCurrentPage
                 ? activeColor?.darken()
-                : inactiveColor?.withOpacity(0.5),
+                : inactiveColor?..withAlpha(128),    
           ),
           onPressed: isCurrentPage ? null : () => onPageChanged(pageIndex),
           child: Text(
@@ -223,14 +222,14 @@ class MaterialPagination extends StatelessWidget {
           color: Colors.transparent,
           borderRadius: BorderRadius.circular(borderRadius),
           border: Border.all(
-            color: inactiveColor!.withOpacity(0.23),
+            color: inactiveColor!.withAlpha(59)
           ),
         ),
         child: IconButton(
           style: IconButton.styleFrom(
             padding: EdgeInsets.zero,
             backgroundColor: Colors.transparent,
-            foregroundColor: inactiveColor?.withOpacity(0.5),
+            foregroundColor: inactiveColor?.withAlpha(128),    
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(borderRadius)),
           ),
@@ -241,7 +240,7 @@ class MaterialPagination extends StatelessWidget {
           icon: Icon(
             icon,
             size: iconSize,
-            color: inactiveColor?.withOpacity(0.5),
+            color: inactiveColor?.withAlpha(128)
           ),
         ),
       ),
@@ -269,7 +268,7 @@ class MaterialPagination extends StatelessWidget {
             SizedBox(width: iconGap),
             Text('...',
                 style: fontStyle?.copyWith(
-                    color: inactiveColor?.withOpacity(0.5))),
+                    color: inactiveColor?.withAlpha(128))),
             SizedBox(width: iconGap),
           ],
           ...List.generate(endPage - startPage + 1, (index) {
@@ -285,7 +284,7 @@ class MaterialPagination extends StatelessWidget {
             SizedBox(width: iconGap),
             Text('...',
                 style: fontStyle?.copyWith(
-                    color: inactiveColor?.withOpacity(0.5))),
+                    color: inactiveColor?.withAlpha(128))),
             SizedBox(width: iconGap),
             _buildPageButton(totalPages, false),
           ],
