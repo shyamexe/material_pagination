@@ -17,7 +17,4 @@ extension ColorExtensions on Color {
   }
 }
 
-enum MPageType{
-  outlined,
-  filled
-}
+enum MPageType { outlined, filled }

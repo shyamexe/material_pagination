@@ -18,7 +18,6 @@ class MainApp extends StatelessWidget {
             children: [
               const SizedBox(height: 20),
               MaterialPagination(
-
                 currentPage: page,
                 totalPages: 40,
                 onPageChanged: (p0) {
@@ -36,7 +35,7 @@ class MainApp extends StatelessWidget {
                 currentPage: page,
                 totalPages: 40,
                 onPageChanged: (p0) {
-                   reload(
+                  reload(
                     () {
                       page = p0;
                     },
@@ -52,27 +51,27 @@ class MainApp extends StatelessWidget {
                 currentPage: page,
                 totalPages: 40,
                 onPageChanged: (p0) {
-                   reload(
+                  reload(
                     () {
                       page = p0;
                     },
                   );
                 },
                 iconGap: 10,
-                visiblePageCount:5,
+                visiblePageCount: 5,
                 activeColor: Colors.yellow,
                 inactiveColor: Colors.grey.shade600,
                 inactiveTextColor: Colors.black,
-                activeTextColor:  Colors.red,
+                activeTextColor: Colors.red,
                 borderRadius: 3,
                 type: MPageType.filled,
               ),
               const SizedBox(height: 20),
-               MaterialPagination(
+              MaterialPagination(
                 currentPage: page,
                 totalPages: 40,
                 onPageChanged: (p0) {
-                   reload(
+                  reload(
                     () {
                       page = p0;
                     },
@@ -87,8 +86,6 @@ class MainApp extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
-
-
                 activeColor: Colors.teal,
                 inactiveColor: Colors.black,
                 borderRadius: 6,

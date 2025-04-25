@@ -9,7 +9,7 @@ import 'package:material_pagination/src/utils.dart';
 /// behavior of the pagination controls.
 ///
 /// Example usage:
-/// 
+///
 /// MaterialPagination(
 ///   currentPage: 1,
 ///   totalPages: 10,
@@ -26,7 +26,7 @@ import 'package:material_pagination/src/utils.dart';
 ///   borderRadius: 8.0,
 ///   colorDarkness: 0.2,
 /// )
-/// 
+///
 ///
 /// ## Parameters:
 ///
@@ -56,7 +56,7 @@ import 'package:material_pagination/src/utils.dart';
 /// This example shows how to create a basic pagination bar with 10 total pages,
 /// and a callback to handle page changes:
 ///
-/// 
+///
 /// MaterialPagination(
 ///   currentPage: 3,
 ///   totalPages: 10,
@@ -72,7 +72,7 @@ import 'package:material_pagination/src/utils.dart';
 ///   buttonSize: 36.0,
 ///   borderRadius: 10.0,
 /// )
-/// 
+///
 ///
 /// ## Features:
 /// * Provides easy navigation through numbered pages.
@@ -101,7 +101,6 @@ class MaterialPagination extends StatelessWidget {
   /// The color of the active page button.
   /// Defaults to [Colors.blue].
   final Color? activeColor;
-
 
   /// The color of inactive page buttons.
   /// Defaults to [Colors.grey].
@@ -193,11 +192,9 @@ class MaterialPagination extends StatelessWidget {
       height: buttonSize,
       width: buttonSize,
       child: DecoratedBox(
-       decoration: BoxDecoration(
+        decoration: BoxDecoration(
           color: type == MPageType.filled
-              ? (isCurrentPage
-                  ? activeColor
-                  : inactiveColor?.withAlpha(50))
+              ? (isCurrentPage ? activeColor : inactiveColor?.withAlpha(50))
               : (isCurrentPage
                   ? activeColor?.withAlpha(51)
                   : inactiveColor?.withAlpha(3)),
@@ -211,7 +208,7 @@ class MaterialPagination extends StatelessWidget {
               : null,
         ),
         child: TextButton(
-         style: TextButton.styleFrom(
+          style: TextButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(borderRadius),
             ),
@@ -251,7 +248,7 @@ class MaterialPagination extends StatelessWidget {
       height: buttonSize,
       width: buttonSize,
       child: DecoratedBox(
-       decoration: BoxDecoration(
+        decoration: BoxDecoration(
           color: type == MPageType.filled
               ? inactiveColor?.withAlpha(50)
               : Colors.transparent,
@@ -261,7 +258,7 @@ class MaterialPagination extends StatelessWidget {
               : null,
         ),
         child: IconButton(
-         style: IconButton.styleFrom(
+          style: IconButton.styleFrom(
             padding: EdgeInsets.zero,
             backgroundColor: Colors.transparent,
             foregroundColor: inactiveTextColor ?? inactiveColor?.withAlpha(128),
@@ -273,8 +270,7 @@ class MaterialPagination extends StatelessWidget {
           onPressed: isNext
               ? () => onPageChanged(currentPage + 1)
               : () => onPageChanged(currentPage - 1),
-          icon:
-             Icon(
+          icon: Icon(
             icon,
             size: iconSize,
             color: inactiveTextColor ?? inactiveColor?.withAlpha(128),
@@ -304,8 +300,8 @@ class MaterialPagination extends StatelessWidget {
             _buildPageButton(1, false),
             SizedBox(width: iconGap),
             Text('...',
-                style:
-                    fontStyle?.copyWith(color: inactiveTextColor ?? inactiveColor?.withAlpha(128))),
+                style: fontStyle?.copyWith(
+                    color: inactiveTextColor ?? inactiveColor?.withAlpha(128))),
             SizedBox(width: iconGap),
           ],
           ...List.generate(endPage - startPage + 1, (index) {
@@ -320,8 +316,8 @@ class MaterialPagination extends StatelessWidget {
           if (endPage < totalPages) ...[
             SizedBox(width: iconGap),
             Text('...',
-                style:
-                    fontStyle?.copyWith(color: inactiveTextColor ?? inactiveColor?.withAlpha(128))),
+                style: fontStyle?.copyWith(
+                    color: inactiveTextColor ?? inactiveColor?.withAlpha(128))),
             SizedBox(width: iconGap),
             _buildPageButton(totalPages, false),
           ],
