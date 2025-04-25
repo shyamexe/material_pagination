@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.2] - 2024-09-07
+## [1.0.2] - 2025-05-24
 
 ### Added
 - Code optimization for better performance
